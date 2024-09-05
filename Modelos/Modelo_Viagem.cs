@@ -42,7 +42,7 @@ namespace ViagensApi.Modelos
         public double Precos { get; set; }
         public int Cadeiras { get; init; }
         public int CadeirasOcupadas { get; set; }
-
+        [JsonIgnore]
         public ICollection<Modelo_Passagens> Passagens { get; set; }
         
 

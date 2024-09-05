@@ -6,6 +6,7 @@ using ViagensApi.Data;
 using ViagensApi.Dto;
 using ViagensApi.Modelos;
 
+
 namespace ApiGerenciadorDeViagens.Servicos.Passagens
 {
     public class Servicos_Passagens : IInterface_Passagem
@@ -37,18 +38,20 @@ namespace ApiGerenciadorDeViagens.Servicos.Passagens
 
                 };
 
-                var pegarcpf = await _context.Tabela_Usuario.Include(cliente => cliente.Passagem).FirstOrDefaultAsync(usuarioBanco => usuarioBanco.CPF == novaPassagemDto.cpf);
-                var pegarviagem = await _context.Tabela_Viagem.Include(viagem => viagem.Passagens).FirstOrDefaultAsync(viagemBanco => viagemBanco.Origem == novaPassagemDto.Origem && viagemBanco.Destino == novaPassagemDto.Destino && viagemBanco.dataIda == novaPassagemDto.DataIda && viagemBanco.dataVolta == novaPassagemDto.DataVolta && viagemBanco.horaIda == novaPassagemDto.HoraIda && viagemBanco.horaVolta == novaPassagemDto.HoraVolta);
-                
+                //var pegarviagem = await _context.Tabela_Passagem.Include(Passagem => Passagem.Usuario).Where(Id => Id.Usuario.CPF == novaPassagemDto.cpf);
 
-                
-                if(pegarcpf == null)
+                //if (pegarcpf == null)
+                //{
+                //    resposta.Mensagem = "CPF informado não está registrado no sistema, por favor realize o seu cadastro e tente comprar a passagem novamente";
+                //    return resposta;
+                //}
+
+                else if ()
                 {
-                    resposta.Mensagem = "CPF informado não está registrado no sistema, por favor realize o seu cadastro e tente comprar a passagem novamente";
-                        return resposta;
+
                 }
 
-                
+
 
                 _context.Add(Passagem);
                 await _context.SaveChangesAsync();
@@ -59,14 +62,57 @@ namespace ApiGerenciadorDeViagens.Servicos.Passagens
 
 
             }
-            catch (Exception ex) 
-            { 
-            
+            catch (Exception ex)
+            {
+
                 resposta.Mensagem = $"Ocorreu um erro: {ex.Message}";
                 return resposta;
             }
         }
 
-    
+        public async Task<Modelo_Resposta<List<Modelo_Passagens>>> ListarPassagens(string IdUsuario)
+        {
+            Modelo_Resposta<List<Modelo_Passagens>> Resposta = new Modelo_Resposta<List<Modelo_Passagens>>();
+
+            try
+            {
+
+                var Passagens = await _context.Tabela_Passagem.Include(Acesso => Acesso.Usuario).Where(passagem => passagem.Usuario.CPF == IdUsuario).ToListAsync();
+
+                if (Passagens != null)
+                {
+                    Resposta.Mensagem = "CPF inválido, digite novamente. Por favor";
+                    return Resposta;
+
+                }
+
+                Resposta.Dados = Passagens;
+                Resposta.Mensagem = $"Todas as passagens com o CPF {IdUsuario} foram listadas";
+                return Resposta;
+
+            }
+            catch (Exception ex)
+            {
+
+                Resposta.Mensagem = $"Ocorreu uma mensagem: {ex.Message}";
+                return Resposta;
+
+            }
+        }
+
+        //public async Task<Modelo_Resposta<Modelo_Passagens>> CancelarPassagem(Guid IdPassagem)
+        //{
+        //    //Modelo_Resposta<Modelo_Passagens> Resposta = new Modelo_Resposta<Modelo_Passagens>();
+        //    //try
+        //    //{
+        //    //    //Acertar essa bosta
+        //    //    var Passagens = await _context.Tabela_Passagem
+        //    //        .Include(Acesso => Acesso.Viagens).Sum(Passagem => Passagem.assentos - Passagem.Viagens.CadeirasOcupadas);
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+
+        //    //}
+        //}
     }
 }

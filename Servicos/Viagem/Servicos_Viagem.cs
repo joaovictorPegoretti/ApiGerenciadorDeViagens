@@ -44,7 +44,7 @@ namespace ViagensApi.Servicos.Viagem
                     CadeirasOcupadas = novaViagemDto.CadeirasOcupadas,
                 };
 
-                _context.Add(viagem); //Adiciona a vaigem ao banco
+                _context.Add(viagem); //Adiciona a viagem ao banco
                 await _context.SaveChangesAsync();
 
                 Resposta.Dados = await _context.Tabela_Viagem.ToListAsync();
@@ -69,13 +69,14 @@ namespace ViagensApi.Servicos.Viagem
                 var Listar_Viagens_PorODIV = await _context.Tabela_Viagem
                     .Where(viagens => viagens.Origem == origem && viagens.Destino == destino && viagens.dataIda == ida && viagens.dataVolta == volta)
                     .ToListAsync();
-               
+               // Falta fazer o resultado ser apenas os valores especificos solicitados na questão
 
                 if (Listar_Viagens_PorODIV == null)
                 {
                     Resposta.Mensagem = "Nenhuma viagem com esses dados foi encontrada";
                     return Resposta;
                 }
+                var Filto = _context.Tabela_Viagem.Select(viagem => viagem.dataIda);
                 Resposta.Dados = Listar_Viagens_PorODIV; //O nome ODIV é O = ORIGEM, D = DESTINO, I = IDA e V = VOLTA
                 Resposta.Mensagem = $"Essas são todas as viagens com origem em {origem} indo às {ida} com destino a {destino}";
                 return Resposta;

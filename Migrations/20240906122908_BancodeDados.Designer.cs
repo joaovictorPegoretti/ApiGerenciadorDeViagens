@@ -12,8 +12,8 @@ using ViagensApi.Data;
 namespace ApiGerenciadorDeViagens.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240903190753_BancoDeDados")]
-    partial class BancoDeDados
+    [Migration("20240906122908_BancodeDados")]
+    partial class BancodeDados
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -71,12 +71,17 @@ namespace ApiGerenciadorDeViagens.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("ViagensId")
+                        .HasColumnType("uuid");
+
                     b.Property<int>("assentos")
                         .HasColumnType("integer");
 
                     b.HasKey("NumeroPassagem");
 
                     b.HasIndex("UsuarioCPF");
+
+                    b.HasIndex("ViagensId");
 
                     b.ToTable("Tabela_Passagem");
                 });
@@ -128,9 +133,6 @@ namespace ApiGerenciadorDeViagens.Migrations
                     b.Property<int>("Cadeiras")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CadeirasOcupadas")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Companhia")
                         .IsRequired()
                         .HasColumnType("text");
@@ -138,9 +140,6 @@ namespace ApiGerenciadorDeViagens.Migrations
                     b.Property<string>("Destino")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<Guid?>("Modelo_PassagensNumeroPassagem")
-                        .HasColumnType("uuid");
 
                     b.Property<string>("Origem")
                         .IsRequired()
@@ -167,8 +166,6 @@ namespace ApiGerenciadorDeViagens.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Modelo_PassagensNumeroPassagem");
-
                     b.ToTable("Tabela_Viagem");
                 });
 
@@ -180,24 +177,25 @@ namespace ApiGerenciadorDeViagens.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ViagensApi.Modelos.Modelo_Viagem", "Viagens")
+                        .WithMany("Passagens")
+                        .HasForeignKey("ViagensId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Usuario");
-                });
 
-            modelBuilder.Entity("ViagensApi.Modelos.Modelo_Viagem", b =>
-                {
-                    b.HasOne("ApiGerenciadorDeViagens.Modelos.Modelo_Passagens", null)
-                        .WithMany("Viagens")
-                        .HasForeignKey("Modelo_PassagensNumeroPassagem");
-                });
-
-            modelBuilder.Entity("ApiGerenciadorDeViagens.Modelos.Modelo_Passagens", b =>
-                {
                     b.Navigation("Viagens");
                 });
 
             modelBuilder.Entity("ViagensApi.Modelos.Modelo_Usuario", b =>
                 {
                     b.Navigation("Passagem");
+                });
+
+            modelBuilder.Entity("ViagensApi.Modelos.Modelo_Viagem", b =>
+                {
+                    b.Navigation("Passagens");
                 });
 #pragma warning restore 612, 618
         }

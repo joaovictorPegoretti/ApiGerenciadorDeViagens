@@ -38,7 +38,6 @@ namespace ViagensApi.Dto
         }
         public string Companhia { get; init; }
         public double Precos { get; set; }
-        public int CadeirasOcupadas { get; set; }
     }
 
 }

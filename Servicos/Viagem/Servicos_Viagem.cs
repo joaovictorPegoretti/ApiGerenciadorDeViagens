@@ -41,7 +41,6 @@ namespace ViagensApi.Servicos.Viagem
                     Companhia = novaViagemDto.Companhia,
                     Precos = novaViagemDto.Precos,
                     Cadeiras = 150,
-                    CadeirasOcupadas = novaViagemDto.CadeirasOcupadas,
                 };
 
                 _context.Add(viagem); //Adiciona a viagem ao banco

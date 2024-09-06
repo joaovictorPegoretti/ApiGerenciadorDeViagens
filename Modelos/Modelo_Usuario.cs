@@ -16,9 +16,9 @@ namespace ViagensApi.Modelos
         public string Endereco_Numero { get; set; }
         public string Telefone_Fixo { get; set; }
         public string Telefone_Celular { get; set; }
-        public string Email { get; set; } 
-
-        public ICollection<Modelo_Passagens> Passagem { get; set; }
+        public string Email { get; set; }
+        [JsonIgnore]
+        public ICollection<Modelo_Passagens> Passagem { get;}
 
         
 

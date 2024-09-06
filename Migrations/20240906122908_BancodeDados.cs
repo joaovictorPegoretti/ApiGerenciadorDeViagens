@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApiGerenciadorDeViagens.Migrations
 {
     /// <inheritdoc />
-    public partial class BancoDeDados : Migration
+    public partial class BancodeDados : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,26 @@ namespace ApiGerenciadorDeViagens.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tabela_Viagem",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Origem = table.Column<string>(type: "text", nullable: false),
+                    Destino = table.Column<string>(type: "text", nullable: false),
+                    dataIda = table.Column<string>(type: "text", nullable: false),
+                    dataVolta = table.Column<string>(type: "text", nullable: false),
+                    horaIda = table.Column<string>(type: "text", nullable: false),
+                    horaVolta = table.Column<string>(type: "text", nullable: false),
+                    Companhia = table.Column<string>(type: "text", nullable: false),
+                    Precos = table.Column<double>(type: "double precision", nullable: false),
+                    Cadeiras = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tabela_Viagem", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tabela_Passagem",
                 columns: table => new
                 {
@@ -44,7 +64,8 @@ namespace ApiGerenciadorDeViagens.Migrations
                     assentos = table.Column<int>(type: "integer", nullable: false),
                     FormaDePagamento = table.Column<string>(type: "text", nullable: false),
                     Cpf = table.Column<string>(type: "text", nullable: false),
-                    UsuarioCPF = table.Column<string>(type: "text", nullable: false)
+                    UsuarioCPF = table.Column<string>(type: "text", nullable: false),
+                    ViagensId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -55,33 +76,12 @@ namespace ApiGerenciadorDeViagens.Migrations
                         principalTable: "Tabela_Usuario",
                         principalColumn: "CPF",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tabela_Viagem",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Origem = table.Column<string>(type: "text", nullable: false),
-                    Destino = table.Column<string>(type: "text", nullable: false),
-                    dataIda = table.Column<string>(type: "text", nullable: false),
-                    dataVolta = table.Column<string>(type: "text", nullable: false),
-                    horaIda = table.Column<string>(type: "text", nullable: false),
-                    horaVolta = table.Column<string>(type: "text", nullable: false),
-                    Companhia = table.Column<string>(type: "text", nullable: false),
-                    Precos = table.Column<double>(type: "double precision", nullable: false),
-                    Cadeiras = table.Column<int>(type: "integer", nullable: false),
-                    CadeirasOcupadas = table.Column<int>(type: "integer", nullable: false),
-                    Modelo_PassagensNumeroPassagem = table.Column<Guid>(type: "uuid", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tabela_Viagem", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tabela_Viagem_Tabela_Passagem_Modelo_PassagensNumeroPassagem",
-                        column: x => x.Modelo_PassagensNumeroPassagem,
-                        principalTable: "Tabela_Passagem",
-                        principalColumn: "NumeroPassagem");
+                        name: "FK_Tabela_Passagem_Tabela_Viagem_ViagensId",
+                        column: x => x.ViagensId,
+                        principalTable: "Tabela_Viagem",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -90,22 +90,22 @@ namespace ApiGerenciadorDeViagens.Migrations
                 column: "UsuarioCPF");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tabela_Viagem_Modelo_PassagensNumeroPassagem",
-                table: "Tabela_Viagem",
-                column: "Modelo_PassagensNumeroPassagem");
+                name: "IX_Tabela_Passagem_ViagensId",
+                table: "Tabela_Passagem",
+                column: "ViagensId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tabela_Viagem");
-
-            migrationBuilder.DropTable(
                 name: "Tabela_Passagem");
 
             migrationBuilder.DropTable(
                 name: "Tabela_Usuario");
+
+            migrationBuilder.DropTable(
+                name: "Tabela_Viagem");
         }
     }
 }

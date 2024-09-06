@@ -41,5 +41,7 @@ namespace ViagensApi.Controles
             return Ok(novaPassagem);
         }
 
+        [HttpDelete("Excluir Passagens")]
+
     }
 }

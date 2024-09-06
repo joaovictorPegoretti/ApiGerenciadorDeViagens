@@ -1,6 +1,5 @@
 ﻿using ApiGerenciadorDeViagens.Modelos;
 using Microsoft.EntityFrameworkCore;
-using ViagensApi.Modelos;
 
 
 namespace ViagensApi.Data

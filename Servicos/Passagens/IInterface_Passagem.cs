@@ -1,6 +1,5 @@
 ﻿using ApiGerenciadorDeViagens.Dto;
 using ApiGerenciadorDeViagens.Modelos;
-using ViagensApi.Modelos;
 namespace ApiGerenciadorDeViagens.Servicos.Passagens
 {
     public interface IInterface_Passagem

@@ -3,8 +3,6 @@ using ApiGerenciadorDeViagens.Modelos;
 using ApiGerenciadorDeViagens.Servicos.Passagens;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ViagensApi.Modelos;
-using ViagensApi.Servicos.Usuario;
 
 namespace ViagensApi.Controles
 {

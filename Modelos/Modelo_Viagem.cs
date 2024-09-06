@@ -1,7 +1,7 @@
 ﻿using ApiGerenciadorDeViagens.Modelos;
 using System.Text.Json.Serialization;
 
-namespace ViagensApi.Modelos
+namespace ApiGerenciadorDeViagens.Modelos
 {
     public class Modelo_Viagem
     {

@@ -1,6 +1,6 @@
-﻿using ViagensApi.Modelos;
+﻿using ApiGerenciadorDeViagens.Modelos;
 
-namespace ViagensApi.Dto
+namespace ApiGerenciadorDeViagens.Dto
 {
     public class NovaViagemDto
     {

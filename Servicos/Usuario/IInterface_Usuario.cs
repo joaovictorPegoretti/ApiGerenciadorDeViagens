@@ -1,7 +1,7 @@
 ﻿using ApiGerenciadorDeViagens.Dto;
-using ViagensApi.Modelos;
+using ApiGerenciadorDeViagens.Modelos;
 
-namespace ViagensApi.Servicos.Usuario
+namespace ApiGerenciadorDeViagens.Servicos.Usuario
 {
     public interface IInterface_Usuario
     {

@@ -1,8 +1,11 @@
 ﻿using ApiGerenciadorDeViagens.Dto;
 using ApiGerenciadorDeViagens.Modelos;
 using ApiGerenciadorDeViagens.Servicos.Passagens;
+using ApiGerenciadorDeViagens.Servicos.Usuario;
+using ApiGerenciadorDeViagens.Servicos.Viagem;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace ViagensApi.Controles
 {
@@ -12,6 +15,7 @@ namespace ViagensApi.Controles
     {
         private readonly IInterface_Usuario _interfaceUsuario;
         private readonly IInterface_Passagem _interfacePassagem;
+        private readonly IInterface_Viagem _interfaceViagem;
         public Controle_Usuario(IInterface_Usuario interfaceUsuario, IInterface_Passagem interfacePassagem)
         {
             _interfaceUsuario = interfaceUsuario;
@@ -25,11 +29,12 @@ namespace ViagensApi.Controles
             return Ok(novoUsuario);
         }
 
-        [HttpGet("Listar Usuarios")]
-        public async Task<ActionResult<Modelo_Resposta<List<Modelo_Usuario>>>> ListarUsuario()
+        [HttpPost("Criar nova viagem")]
+
+        public async Task<ActionResult<Modelo_Resposta<Modelo_Viagem>>> NovaViagem(NovaViagemDto novaViagemDto)
         {
-            var usuarios = await _interfaceUsuario.ListarUsarios();
-            return Ok(usuarios);
+            var viagemnova = await _interfaceViagem.NovaViagem(novaViagemDto);
+            return Ok(viagemnova);
         }
 
         [HttpPost("Comprar passagens")]
@@ -39,7 +44,16 @@ namespace ViagensApi.Controles
             return Ok(novaPassagem);
         }
 
-        [HttpDelete("Excluir Passagens")]
+        [HttpGet("Listar todas as viagens")]
+
+        public async Task<ActionResult<Modelo_Resposta<List<Modelo_Viagem>>>> Listar_Todas_Viagens()
+        {
+            var Viagens = await _interfaceViagem.Listar_Todas_Viagens();
+            return Ok(Viagens);
+        }
+
+        //[HttpDelete("Excluir Passagens")]
+
 
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using ViagensApi.Modelos;
+using ApiGerenciadorDeViagens.Modelos;
 
 namespace ApiGerenciadorDeViagens.Modelos
 {
@@ -8,7 +8,7 @@ namespace ApiGerenciadorDeViagens.Modelos
     {
         [Key]
         public Guid NumeroPassagem { get; init; }
-        public Guid IdViagem { get; set; }
+        public string IdViagem { get; set; }
         public Modelo_Viagem Viagens { get; set; }
         public int assentos { get; set; }
         public string FormaDePagamento { get; set; }

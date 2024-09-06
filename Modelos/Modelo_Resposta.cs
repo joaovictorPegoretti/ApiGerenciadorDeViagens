@@ -1,4 +1,4 @@
-﻿namespace ViagensApi.Modelos
+﻿namespace ApiGerenciadorDeViagens.Modelos
 {
     public class Modelo_Resposta<T>
     {

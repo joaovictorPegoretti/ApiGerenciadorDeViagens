@@ -1,4 +1,5 @@
-﻿namespace ApiGerenciadorDeViagens.Dto
+﻿using ApiGerenciadorDeViagens.Modelos;
+namespace ApiGerenciadorDeViagens.Dto
 {
     public class NovoUsuaripDto
     {

@@ -1,7 +1,7 @@
-using ViagensApi.Data;
+using ApiGerenciadorDeViagens.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
-using ViagensApi.Servicos.Usuario;
-using ViagensApi.Servicos.Viagem;
+using ApiGerenciadorDeViagens.Servicos.Usuario;
+using ApiGerenciadorDeViagens.Servicos.Viagem;
 using Microsoft.EntityFrameworkCore;
 using ApiGerenciadorDeViagens.Servicos.Passagens;
 

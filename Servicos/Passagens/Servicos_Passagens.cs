@@ -1,12 +1,8 @@
-﻿using ApiGerenciadorDeViagens.Dto;
+﻿using ApiGerenciadorDeViagens.Data;
+using ApiGerenciadorDeViagens.Dto;
 using ApiGerenciadorDeViagens.Modelos;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
-using ViagensApi.Data;
-using Microsoft.EntityFrameworkCore;
-using ViagensApi.Dto;
-using ViagensApi.Data;
-using ViagensApi.Modelos;
 
 
 namespace ApiGerenciadorDeViagens.Servicos.Passagens
@@ -34,21 +30,24 @@ namespace ApiGerenciadorDeViagens.Servicos.Passagens
 
 
                 };
-                var pegardados = await _context.Tabela_Passagem.Include(Acesso => Acesso.Viagens).FirstOrDefaultAsync(Quando => Quando.Viagens.Id == Quando.IdViagem);
-                var pegarcpf = await _context.Tabela_Usuario.FirstOrDefaultAsync(Usuario => Usuario.CPF == novaPassagemDto.cpf);
+                var pegardados = await _context.Tabela_Passagem.Include(Acesso => Acesso.Viagens).Include(Acesso => Acesso.Usuario).Where(Quando => Quando.Usuario.CPF == Quando.Cpf).FirstOrDefaultAsync(Quando => Convert.ToString(Quando.Viagens.Id) == Quando.IdViagem);
                 var viagemsum = _context.Tabela_Passagem.Sum(Soma => Soma.Viagens.Cadeiras + Soma.assentos);
 
-                if (pegarcpf == null)
+                if (pegardados == null)
                 {
-                    resposta.Mensagem = "CPF informado não está registrado no sistema, por favor realize o seu cadastro e tente comprar a passagem novamente";
-                    return resposta;
+                    if (novaPassagemDto.idViagem == null)
+                    {
+                        resposta.Mensagem = "CPF informado não está registrado no sistema, por favor realize o seu cadastro e tente comprar a passagem novamente";
+                        return resposta;
+                    }
+
+                    else
+                    {
+                        resposta.Mensagem = "CPF informado ou Id de viagem não está registrado no sistema, por favor realize o seu cadastro ou verifique o ID da viagem e tente comprar a passagem novamente";
+                    }
                 }
 
-                else if(pegardados == null)
-                {
-                    resposta.Mensagem = "Viagem não encontrada, favor olhar novamente o código do ID da viagem";
-                    return resposta;
-                }
+                
 
                 _context.Add(Passagem);
                 await _context.SaveChangesAsync();

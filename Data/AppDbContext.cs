@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 
 
-namespace ViagensApi.Data
+namespace ApiGerenciadorDeViagens.Data
 {
     public class AppDbContext : DbContext // Classe para conectar o banco e o código
     {

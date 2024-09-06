@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
-using ViagensApi.Data;
-using ViagensApi.Dto;
-using ViagensApi.Modelos;
+using ApiGerenciadorDeViagens.Data;
+using ApiGerenciadorDeViagens.Dto;
+using ApiGerenciadorDeViagens.Modelos;
 
-namespace ViagensApi.Servicos.Viagem
+namespace ApiGerenciadorDeViagens.Servicos.Viagem
 {
     public class Servicos_Viagem : IInterface_Viagem
     {

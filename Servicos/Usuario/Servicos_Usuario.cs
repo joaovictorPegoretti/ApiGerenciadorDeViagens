@@ -1,10 +1,10 @@
 ﻿using ApiGerenciadorDeViagens.Dto;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.Replication;
-using ViagensApi.Data;
-using ViagensApi.Modelos;
+using ApiGerenciadorDeViagens.Data;
+using ApiGerenciadorDeViagens.Modelos;
 
-namespace ViagensApi.Servicos.Usuario
+namespace ApiGerenciadorDeViagens.Servicos.Usuario
 {
     public class Servicos_Usuario : IInterface_Usuario
     {

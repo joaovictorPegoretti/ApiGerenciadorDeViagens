@@ -32,6 +32,6 @@
   <li><a href="https://github.com/EduardoCansian">Eduardo Cansian Rodrigues</a></li>
   <li><a href="https://github.com/edurromanelli">Eduardo Romanelli De Assis</a></li>
   <li><a href="https://github.com/joaovictorPegoretti">João Victor Marcarini Pegoretti</a></li>
-  <li><a href="https://github.com/70Blunck"></a>Pedro Henrique de Paula Blunck Batista</li>
+  <li><a href="https://github.com/70Blunck">Pedro Henrique de Paula Blunck Batista</a></li>
   <li><a href="https://github.com/samuel-tb">Samuel Thompson Barbosa</a></li>
 </ul>

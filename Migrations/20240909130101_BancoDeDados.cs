@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApiGerenciadorDeViagens.Migrations
 {
     /// <inheritdoc />
-    public partial class BancodeDados : Migration
+    public partial class BancoDeDados : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -54,16 +54,11 @@ namespace ApiGerenciadorDeViagens.Migrations
                 columns: table => new
                 {
                     NumeroPassagem = table.Column<Guid>(type: "uuid", nullable: false),
-                    Origem = table.Column<string>(type: "text", nullable: false),
-                    Destino = table.Column<string>(type: "text", nullable: false),
-                    DataIda = table.Column<string>(type: "text", nullable: false),
-                    DataVolta = table.Column<string>(type: "text", nullable: false),
-                    HoraIda = table.Column<string>(type: "text", nullable: false),
-                    HoraVolta = table.Column<string>(type: "text", nullable: false),
-                    Companhia = table.Column<string>(type: "text", nullable: false),
+                    IdViagem = table.Column<Guid>(type: "uuid", nullable: false),
                     assentos = table.Column<int>(type: "integer", nullable: false),
                     FormaDePagamento = table.Column<string>(type: "text", nullable: false),
                     Cpf = table.Column<string>(type: "text", nullable: false),
+                    Checkin = table.Column<bool>(type: "boolean", nullable: false),
                     UsuarioCPF = table.Column<string>(type: "text", nullable: false),
                     ViagensId = table.Column<Guid>(type: "uuid", nullable: false)
                 },

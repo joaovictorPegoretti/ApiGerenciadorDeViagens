@@ -15,14 +15,14 @@ namespace ApiGerenciadorDeViagens.Servicos.Usuario
             _context = context;
         }
 
-        public async Task<Modelo_Resposta<List<Modelo_Usuario>>> CadastrarUsuario(NovoUsuaripDto novoUsuaripDto)
+        public async Task<Modelo_Resposta<List<Modelo_Usuario>>> CadastrarUsuario(NovoUsuaripDto novoUsuaripDto) // Cadastro de um novo usuario
         {
             Modelo_Resposta<List<Modelo_Usuario>> resposta = new Modelo_Resposta<List<Modelo_Usuario>>();
 
 
                 try
             {
-                var Cadastro = new Modelo_Usuario
+                var Cadastro = new Modelo_Usuario //Criando um novo usuario
                 {
                     CPF = novoUsuaripDto.Cpf,
                     Nome = novoUsuaripDto.Nome,
@@ -34,10 +34,10 @@ namespace ApiGerenciadorDeViagens.Servicos.Usuario
                     Email = novoUsuaripDto.Email,
                 };
 
-                _context.Add(Cadastro);
-                await _context.SaveChangesAsync();
+                _context.Add(Cadastro);//Adicionando ao banco
+                await _context.SaveChangesAsync();//Salvando as alterações
 
-                resposta.Dados = await _context.Tabela_Usuario.ToListAsync();
+                resposta.Dados = await _context.Tabela_Usuario.ToListAsync(); //Mostrando a lista de usuários
                 resposta.Mensagem = "Cadastro realizado com sucesso";
                 return resposta;
 
@@ -51,24 +51,6 @@ namespace ApiGerenciadorDeViagens.Servicos.Usuario
 
         }
 
-        public async Task<Modelo_Resposta<List<Modelo_Usuario>>> ListarUsarios()
-        {
-            Modelo_Resposta<List<Modelo_Usuario>> resposta = new Modelo_Resposta<List<Modelo_Usuario>>();
-            try
-            {
-                var Lista_Usuarios = await _context.Tabela_Usuario.ToListAsync();
-
-                resposta.Dados = Lista_Usuarios;
-                resposta.Mensagem = "Todos os usuários foram mostrados";
-                return resposta;
-            }
-            catch (Exception ex)
-            {
-                resposta.Mensagem = ex.Message;
-                resposta.Status = false;
-                return resposta;
-            }
-           
-        }
+     
     }
 }

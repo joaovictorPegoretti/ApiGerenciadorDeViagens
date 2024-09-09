@@ -4,9 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace ApiGerenciadorDeViagens.Modelos
 {
-    public class Modelo_Usuario
+    public class Modelo_Usuario //Padrão de modelo para usuario
     {
-        [Key] //Definindo a propriedade CPF como Chave primaria para a tabela do banco
+        [Key] 
         public string CPF { get; init; }
 
 

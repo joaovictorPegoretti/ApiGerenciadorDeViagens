@@ -1,7 +1,7 @@
 ﻿using ApiGerenciadorDeViagens.Modelos;
 namespace ApiGerenciadorDeViagens.Dto
 {
-    public class NovoUsuaripDto
+    public class NovoUsuaripDto //Um DTO para criação de um novo usuario
     {
         public string Cpf { get; set; }
         public string Nome { get; set; }

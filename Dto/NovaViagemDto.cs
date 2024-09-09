@@ -2,7 +2,7 @@
 
 namespace ApiGerenciadorDeViagens.Dto
 {
-    public class NovaViagemDto
+    public class NovaViagemDto //Um DTO para criação de uma nova viagem
     {
         public string Origem { get; set; }
         public string Destino { get; set; }

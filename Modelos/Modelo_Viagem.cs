@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace ApiGerenciadorDeViagens.Modelos
 {
-    public class Modelo_Viagem
+    public class Modelo_Viagem //Padrão de modelo para viagem
     {
         public Guid Id { get; init; }
         public string Origem { get; set; }

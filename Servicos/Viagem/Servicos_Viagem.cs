@@ -14,16 +14,6 @@ namespace ApiGerenciadorDeViagens.Servicos.Viagem
             _context = context;
         }
 
-        public Task<Modelo_Resposta<Modelo_Viagem>> CancelarReserva()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Modelo_Resposta<Modelo_Viagem>> ComprarViagem()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Modelo_Resposta<List<Modelo_Viagem>>> NovaViagem(NovaViagemDto novaViagemDto)
         {
             Modelo_Resposta<List<Modelo_Viagem>> Resposta = new Modelo_Resposta<List<Modelo_Viagem>>();

@@ -44,15 +44,12 @@ namespace ViagensApi.Controles
             return Ok(novaPassagem);
         }
 
-        [HttpGet("Listar todas as viagens")]
 
         public async Task<ActionResult<Modelo_Resposta<List<Modelo_Viagem>>>> Listar_Todas_Viagens()
         {
             var Viagens = await _interfaceViagem.Listar_Todas_Viagens();
             return Ok(Viagens);
         }
-
-        //[HttpDelete("Excluir Passagens")]
 
 
     }

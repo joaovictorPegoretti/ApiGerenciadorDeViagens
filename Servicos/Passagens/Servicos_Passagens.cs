@@ -21,17 +21,8 @@ namespace ApiGerenciadorDeViagens.Servicos.Passagens
             Modelo_Resposta<List<Modelo_Passagens>> resposta = new Modelo_Resposta<List<Modelo_Passagens>>();
             try
             {
-                var Passagem = new Modelo_Passagens()
-                {
-                    IdViagem = novaPassagemDto.idViagem,
-                    assentos = novaPassagemDto.Assentos,
-                    FormaDePagamento = novaPassagemDto.Forma_De_Pagamento,
-                    Cpf = novaPassagemDto.cpf,
 
 
-                };
-                var pegardados = await _context.Tabela_Passagem.Include(Acesso => Acesso.Viagens).Include(Acesso => Acesso.Usuario).Where(Quando => Quando.Usuario.CPF == Quando.Cpf).FirstOrDefaultAsync(Quando => Convert.ToString(Quando.Viagens.Id) == Quando.IdViagem);
-                var viagemsum = _context.Tabela_Passagem.Sum(Soma => Soma.Viagens.Cadeiras + Soma.assentos);
 
                 if (pegardados == null)
                 {
@@ -41,11 +32,6 @@ namespace ApiGerenciadorDeViagens.Servicos.Passagens
                         return resposta;
                     }
 
-                    else
-                    {
-                        resposta.Mensagem = "CPF informado ou Id de viagem não está registrado no sistema, por favor realize o seu cadastro ou verifique o ID da viagem e tente comprar a passagem novamente";
-                    }
-                }
 
                 
 

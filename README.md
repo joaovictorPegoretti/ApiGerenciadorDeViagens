@@ -7,7 +7,8 @@
   <p>A API tem vários recursos que podem ser acessados pelo <a href="https://github.com/joaovictorPegoretti/TolyID/blob/c5456eeebd167ee3712e606faee143b5b588fac2/Tatu/Menu.cs" target=”_blank”>Controle</a>, as opções disponíveis são: </p>
 
 <ul>
-    <li>•	<a href="https://github.com/joaovictorPegoretti/ApiGerenciadorDeViagens/blob/master/Controles/Controles.cs" target="_blank">Cadastro de Usuário</a> – Utilizada para cadastrar os clientes que irão comprar as passagens </li>
+    <li>•	<a href="https://github.com/joaovictorPegoretti/ApiGerenciadorDeViagens/blob/master/Controles/Controles.cs" target="_blank"  rel=noopener>Cadastro de Usuário</a> – Utilizada para cadastrar os clientes que irão comprar as passagens </li>
+    <li>•	<a href="https://github.com/joaovictorPegoretti/ApiGerenciadorDeViagens/blob/master/Controles/Controles.cs" target="_blank" >Cadastro de Usuário</a> – Utilizada para cadastrar os clientes que irão comprar as passagens </li>
     <li>•	<a href="https://github.com/joaovictorPegoretti/ApiGerenciadorDeViagens/blob/master/Controles/Controles.cs" target=”_blank”>Cadastro de Viagens</a> – Utilizada para cadastrar novas viagens para o sistema</li>
     <li>•	<a href="https://github.com/joaovictorPegoretti/ApiGerenciadorDeViagens/blob/master/Controles/Controles.cs" target=”_blank”>Listagem de todas as viagens</a> – Utilizada para Listar todas as viagens disponiveis no banco, para o cliente poder escolher</li>
     <li>•	<a href="https://github.com/joaovictorPegoretti/ApiGerenciadorDeViagens/blob/master/Controles/Controles.cs" target=”_blank”>Listagem de viagens especificas</a> – Utilizada para Listar as viagens que possuem as informações de destino, origem, data de ida e data de volta informadas</li>
